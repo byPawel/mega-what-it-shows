@@ -4,7 +4,7 @@ title: '#4471 is three problems'
 owner: byPawel
 status: closed
 reviewed: 2026-10-28
-signature: byPawel
+signature: 'v1.eyJzdWIiOiIzMzA5IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMyMTc4MTUsImV4cCI6MTc5MzMwNDIxNX0.QZlabXWSKGPFWjU75Zdp8rYMsastGUCnIjD80CjHe5I'
 ---
 
 <script>
