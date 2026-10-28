@@ -2,8 +2,8 @@
 layout: runbook
 title: '#4471 · dates parse mm/dd in eu locales'
 owner: support desk
-status: known
-reviewed: 2026-09-30
+status: superseded
+reviewed: 2026-10-28
 ---
 
 <script>
@@ -17,6 +17,10 @@ Since April, people have told us their bookings land on the wrong day: a month f
 
 **Merged as one issue.** The parser reads dates month first, and our tenants write the day
 first. The fix is queued.
+
+<Callout kind="warn">
+Superseded by [#4471 is three problems](/kb/incidents/4471/split): three problems, filed and closed as separate tickets.
+</Callout>
 
 <Callout>
 Known. One issue, one fix queued.
