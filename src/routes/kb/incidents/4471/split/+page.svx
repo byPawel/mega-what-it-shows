@@ -46,7 +46,8 @@ must match the order the form reads.
 **`shift`: one day early.** These reports say a date moved by one day, not that day and month
 swapped: a Tuesday shown as Monday, a meeting held on two days for clients in Lisbon and Toronto,
 an invite that arrived before its booking. That is a time-zone conversion. The desk noted them as
-a one-day move (`desk-notes.json`), but filed them under the parser cause by tenant.
+a one-day move (`desk-notes.json`) and count them under the parser cause by tenant, so the
+parser row includes them. They still need their own fix.
 
 ## How to read a date report
 
