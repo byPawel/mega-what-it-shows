@@ -1,0 +1,58 @@
+---
+layout: runbook
+title: '#4471 is three problems'
+owner: byPawel
+status: draft
+reviewed: 2026-10-28
+signature: byPawel
+---
+
+<script>
+  import ProblemTable from '#lib/kb/ProblemTable.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+
+  const tickets = {
+    parser: 'https://github.com/byPawel/mega-what-it-shows/issues/1',
+    hint: 'https://github.com/byPawel/mega-what-it-shows/issues/2',
+    shift: 'https://github.com/byPawel/mega-what-it-shows/issues/3',
+  };
+</script>
+
+[#4471](/kb/incidents/4471) is marked known: one issue, one fix queued. It is not one issue. The
+reports were merged on subject line ([decision 0001](/kb/decisions/0001-dedupe-by-subject)), and
+the subject says nothing about the cause. Read by tenant, channel and body, the reports split
+into three problems with three different fixes.
+
+<Callout kind="warn">
+The queued parser fix closes only the first row. The other two stay open after it ships.
+</Callout>
+
+## What #4471 holds
+
+<ProblemTable ticket={4471} {tickets} />
+
+## The three problems
+
+**`parser`: day and month swap.** The shared parser reads every date month first, and every
+tenant on file writes the day first. 7 April arrives as 4 July. This is the bug #4471 describes,
+and the queued fix is for it.
+
+**`hint`: the booking-v3 form asks for the wrong order.** booking-v3 prints `MM/DD/YYYY` under its
+date field. People type what it asks, and the form reads the date day first, the tenant's way.
+Only form reports from booking-v3 tenants land here. A correct parser does not fix it: the hint
+must match the order the form reads.
+
+**`shift`: one day early.** These reports say a date moved by one day, not that day and month
+swapped: a Tuesday shown as Monday, a meeting held on two days for clients in Lisbon and Toronto,
+an invite that arrived before its booking. That is a time-zone conversion. The desk noted them as
+a one-day move (`desk-notes.json`), but filed them under the parser cause by tenant.
+
+## How to read a date report
+
+- Count unique report ids. The ticket export pages overlap, so one report can appear twice.
+- The intake tag is a guess from the reporter's browser. The cause follows the tenant's locale,
+  its booking form and the channel (`causes.ts`).
+- Read the body before you merge. A one-day move and a swapped date share a subject line, not a fix.
+
+<RenderStamp {signature} />
